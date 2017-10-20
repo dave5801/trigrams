@@ -10,6 +10,7 @@ def main(file_path, length):
     words = open_file(file_path)
     vocab = create_dictionary(words)
     new_content = generate_content(vocab, length)
+    return write_file(new_content)
 
 
 def open_file(file_path):
@@ -54,7 +55,6 @@ def generate_content(vocab, length):
         new_content.extend(*[trigram])
         next_one = find_words(vocab, trigram[1] + " " + trigram[2])
         if len(next_one.split()) > 1:
-            print('Pair')
             pair = next_one
         else:
             next_two = find_words(vocab, trigram[2] + " " + next_one)
@@ -71,3 +71,8 @@ def find_words(vocab, pair=False):
     if pair in vocab:
         return random.choice(vocab[pair])
     return random.choice(list(vocab))
+
+
+def write_file(new_content):
+    """Write generated content to new file."""
+    pass

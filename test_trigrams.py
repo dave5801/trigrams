@@ -35,6 +35,8 @@ def test_generate_content_string():
     from trigrams import generate_content
     assert isinstance(generate_content(test_vocabulary, 10), str)
 
+
 def test_find_words():
+    """Test that find_words function selects valid random key from dictionary."""
     from trigrams import find_words
     assert find_words(test_vocabulary) in test_vocabulary
