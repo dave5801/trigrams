@@ -1,15 +1,5 @@
-""" python -m pytest test_trigrams.py"""
-import pytest
-import sys
-import os.path
-
-
+"""Trigram Tests."""
 test_vocabulary = {'a b': 'c', 'b c': 'd', 'c d': 'e'}
-
-def test_invalid_file():
-    from trigrams import open_file
-    with pytest.raises(TypeError):
-        open_file(123)
 
 
 def test_valid_file():
@@ -31,12 +21,18 @@ def test_dictionary_keys():
 
 
 def test_generate_content_string():
-    """Test generate content function returns string"""
+    """Test generate content function returns string."""
     from trigrams import generate_content
     assert isinstance(generate_content(test_vocabulary, 10), str)
 
 
 def test_find_words():
-    """Test that find_words function selects valid random key from dictionary."""
+    """Test find_words function selects valid random key from dictionary."""
     from trigrams import find_words
     assert find_words(test_vocabulary) in test_vocabulary
+
+
+def test_main_text_length():
+    """Test that main function returns meets the requested number of words."""
+    from trigrams import main
+    assert len(list(main('sherlock.txt', 50))) >= 50
