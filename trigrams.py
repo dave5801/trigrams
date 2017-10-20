@@ -28,4 +28,15 @@ def create_dictionary(words):
     The first two words in each trigram make a key and the third
     is their value.
     """
-    pass
+    vocab = {}
+
+    for i in range(len(words)-2):
+        pair = words[i] + " " +words[i+1]
+        third = words[i+2]
+
+        if pair in vocab:
+            vocab[pair].append(third)
+        else:
+            vocab[pair] = [third]
+
+    return vocab
