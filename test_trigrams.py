@@ -4,6 +4,8 @@ import sys
 import os.path
 
 
+test_vocabulary = {'a b': 'c', 'b c': 'd', 'c d': 'e'}
+
 def test_invalid_file():
     from trigrams import open_file
     with pytest.raises(TypeError):
@@ -31,4 +33,8 @@ def test_dictionary_keys():
 def test_generate_content_string():
     """Test generate content function returns string"""
     from trigrams import generate_content
-    assert isinstance(generate_content({'a b': 'c', 'b c': 'd', 'c d': 'e'}, 10), str)
+    assert isinstance(generate_content(test_vocabulary, 10), str)
+
+def test_find_words():
+    from trigrams import find_words
+    assert find_words(test_vocabulary) in test_vocabulary
