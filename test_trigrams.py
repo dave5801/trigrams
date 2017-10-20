@@ -32,6 +32,12 @@ def test_find_words():
     assert find_words(test_vocabulary) in test_vocabulary
 
 
+def test_find_words_pair():
+    """Test find_words with a pair to return a valid value."""
+    from trigrams import find_words
+    assert find_words(test_vocabulary, 'a b') == 'c'
+
+
 def test_main_text_length():
     """Test that main function returns meets the requested number of words."""
     from trigrams import main
