@@ -19,6 +19,7 @@ def open_file(file_path, length):
     print(new_passage)
 
 
+<<<<<<< HEAD
 def create_dictionary(words):
     """Loop through text document words to create a dictionary.
 
@@ -35,10 +36,13 @@ def create_dictionary(words):
             vocab[pair] = [third]
     return vocab
 
+=======
+>>>>>>> 29cbe9823faa7412ca36e51867a60f6d7208318d
 
 def generate_passage(vocab, length):
     """Generate a random passage.
 
+<<<<<<< HEAD
     Pass in a dictionary of words from a text document and a specified
     length (number of words) to return a randomized string.
     """
@@ -75,3 +79,16 @@ if '__name__' == '__main__':
 
 
 open_file("poe.txt", 500)
+=======
+def open_file(file_path):
+    new_content = {}
+
+    if os.path.exists(file_path):
+        return True
+    else:
+        return False
+        
+    
+
+#open_file("sherlock_small.txt")
+>>>>>>> 29cbe9823faa7412ca36e51867a60f6d7208318d
