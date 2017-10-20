@@ -2,7 +2,7 @@
 import pytest
 
 def test_file_exists():
-    from trigrams import main
-    assert main("sherlock_small.txt") == True
-    #assert main("") == True
+    from trigrams import open_file
+    assert open_file("sherlock_small.txt") == True
+
    
