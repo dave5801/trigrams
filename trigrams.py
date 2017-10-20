@@ -29,14 +29,14 @@ def create_dictionary(words):
     is their value.
     """
     vocab = {}
-
-    for i in range(len(words)-2):
-        pair = words[i] + " " +words[i+1]
-        third = words[i+2]
-
+    for i in range(len(words) - 2):
+        pair = words[i] + " " + words[i + 1]
+        third = words[i + 2]
         if pair in vocab:
             vocab[pair].append(third)
         else:
             vocab[pair] = [third]
-
     return vocab
+
+
+print(create_dictionary(['a', 'b', 'c', 'd']))

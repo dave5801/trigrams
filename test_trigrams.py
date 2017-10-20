@@ -11,10 +11,18 @@ def test_invalid_file():
 
 
 def test_valid_file():
+    """Test that open_file returns a list."""
     from trigrams import open_file
     assert isinstance(open_file("sherlock_small.txt"), list)
 
 
 def test_dictionary():
+    """Test that create_dictionary returns a dictionary object."""
     from trigrams import create_dictionary
     assert isinstance(create_dictionary(['a', 'b', 'c', 'd']), dict)
+
+
+def test_dictionary_keys():
+    """Test that expected keys are in dictionary."""
+    from trigrams import create_dictionary
+    assert 'a b', 'b c' in create_dictionary(['a', 'b', 'c', 'd'])
