@@ -38,5 +38,4 @@ def create_dictionary(words):
             vocab[pair] = [third]
     return vocab
 
-
 print(create_dictionary(['a', 'b', 'c', 'd']))
