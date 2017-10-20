@@ -27,7 +27,8 @@ def test_dictionary_keys():
     from trigrams import create_dictionary
     assert 'a b', 'b c' in create_dictionary(['a', 'b', 'c', 'd'])
 
+
 def test_generate_content_string():
     """Test generate content function returns string"""
     from trigrams import generate_content
-    assert isinstance(generate_content({'a': '1', 'b': '2', 'c':3}), str)
+    assert isinstance(generate_content({'a b': 'c', 'b c': 'd', 'c d': 'e'}, 10), str)

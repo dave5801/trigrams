@@ -9,6 +9,7 @@ def main(file_path, length):
     """Main function."""
     words = open_file(file_path)
     vocab = create_dictionary(words)
+    new_content = generate_content(vocab, length)
 
 
 def open_file(file_path):
@@ -38,4 +39,35 @@ def create_dictionary(words):
             vocab[pair] = [third]
     return vocab
 
-print(create_dictionary(['a', 'b', 'c', 'd']))
+
+def generate_content(vocab, length):
+    """Generate a random passage.
+
+    Pass in a dictionary of words from a text document and a specified
+    length (number of words) to return a randomized string.
+    """
+    new_content = []
+    pair = find_words(vocab)
+    while len(new_content) < length:
+        third = find_words(vocab, pair)
+        trigram = (pair + " " + third).split()
+        new_content.extend(*[trigram])
+        next_one = find_words(vocab, trigram[1] + " " + trigram[2])
+        if len(next_one.split()) > 1:
+            print('Pair')
+            pair = next_one
+        else:
+            next_two = find_words(vocab, trigram[2] + " " + next_one)
+            pair = next_one + " " + next_two
+    return " ".join(new_content)
+
+
+def find_words(vocab, pair=False):
+    """Find random words in the vocab dictionary.
+
+    If a valid pair is passed, return the third word in the trigram
+    Otherwise, randomly choose and return a key pair from the dictionary.
+    """
+    if pair in vocab:
+        return random.choice(vocab[pair])
+    return random.choice(list(vocab))
