@@ -10,7 +10,7 @@ def main(file_path, length):
     words = open_file(file_path)
     vocab = create_dictionary(words)
     new_content = generate_content(vocab, length)
-    return write_file(new_content)
+    return new_content
 
 
 def open_file(file_path):
@@ -73,6 +73,7 @@ def find_words(vocab, pair=False):
     return random.choice(list(vocab))
 
 
-def write_file(new_content):
-    """Write generated content to new file."""
-    pass
+
+if __name__ == '__main__':
+    print main(sys.argv[1], int(sys.argv[2]))
+    
