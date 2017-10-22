@@ -1,12 +1,15 @@
 """Trigrams."""
-
 import sys
 import os.path
 import random
 
 
 def main(file_path, length):
-    """Main function."""
+    """Main function.
+
+    Calls functions to generate a new randomized passage using
+    words from the document.
+    """
     words = open_file(file_path)
     vocab = create_dictionary(words)
     new_content = generate_content(vocab, length)
@@ -16,8 +19,7 @@ def main(file_path, length):
 def open_file(file_path):
     """Read a text document.
 
-    Calls functions to generate a new randomized passage using
-    words from the document.
+    Return a list of each word from the document.
     """
     if os.path.exists(file_path):
         file = open(file_path, 'r')
@@ -65,7 +67,7 @@ def generate_content(vocab, length):
 def find_words(vocab, pair=False):
     """Find random words in the vocab dictionary.
 
-    If a valid pair is passed, return the third word in the trigram
+    If a valid pair is passed, return the third word in the trigram.
     Otherwise, randomly choose and return a key pair from the dictionary.
     """
     if pair in vocab:
@@ -73,7 +75,10 @@ def find_words(vocab, pair=False):
     return random.choice(list(vocab))
 
 
-
 if __name__ == '__main__':
-    print(main(sys.argv[1], int(sys.argv[2])))
-    
+    """Run app from the console.
+
+    Type 'python trigrams.py' followed by a text file name and the
+    desired number of words to generate text and print it to the console.
+    """
+    print main(sys.argv[1], int(sys.argv[2]))
