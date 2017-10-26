@@ -1,5 +1,4 @@
 """Trigrams."""
-
 import sys
 import os.path
 import random
@@ -11,13 +10,13 @@ def main(file_path, length):
     Calls functions to generate a new randomized passage using
     words from the document.
     """
-    words = open_file(file_path)
+    words = get_words(file_path)
     vocab = create_dictionary(words)
     new_content = generate_content(vocab, length)
     return new_content
 
 
-def open_file(file_path):
+def get_words(file_path):
     """Read a text document.
 
     Return a list of each word from the document.
@@ -51,22 +50,22 @@ def generate_content(vocab, length):
     length (number of words) to return a randomized string.
     """
     new_content = []
-    pair = find_words(vocab)
+    pair = find_trigram(vocab)
     while len(new_content) < length:
-        third = find_words(vocab, pair)
+        third = find_trigram(vocab, pair)
         trigram = (pair + " " + third).split()
         new_content.extend(*[trigram])
-        next_one = find_words(vocab, trigram[1] + " " + trigram[2])
+        next_one = find_trigram(vocab, trigram[1] + " " + trigram[2])
         if len(next_one.split()) > 1:
             pair = next_one
         else:
-            next_two = find_words(vocab, trigram[2] + " " + next_one)
+            next_two = find_trigram(vocab, trigram[2] + " " + next_one)
             pair = next_one + " " + next_two
     return " ".join(new_content)
 
 
-def find_words(vocab, pair=False):
-    """Find random words in the vocab dictionary.
+def find_trigram(vocab, pair=False):
+    """Find random set of related words in the vocab dictionary.
 
     If a valid pair is passed, return the third word in the trigram.
     Otherwise, randomly choose and return a key pair from the dictionary.
@@ -82,4 +81,4 @@ if __name__ == '__main__':
     Type 'python trigrams.py' followed by a text file name and the
     desired number of words to generate text and print it to the console.
     """
-    print main(sys.argv[1], int(sys.argv[2]))
+    print(main(sys.argv[1], int(sys.argv[2])))
