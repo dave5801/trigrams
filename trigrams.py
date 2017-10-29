@@ -1,6 +1,5 @@
 """Trigrams."""
 import sys
-import os.path
 import random
 
 
@@ -11,9 +10,12 @@ def main(file_path, length):
     words from the document.
     """
     words = get_words(file_path)
-    vocab = create_dictionary(words)
-    new_content = generate_content(vocab, length)
-    return new_content
+    if words:
+        vocab = create_dictionary(words)
+        new_content = generate_content(vocab, length)
+        return new_content
+    else:
+        return "INVALID FILE PATH"
 
 
 def get_words(file_path):
@@ -21,9 +23,11 @@ def get_words(file_path):
 
     Return a list of each word from the document.
     """
-    if os.path.exists(file_path):
+    try:
         file = open(file_path, 'r')
         return file.read().lower().split()
+    except OSError:
+        print("Wrong file or file path")
 
 
 def create_dictionary(words):
