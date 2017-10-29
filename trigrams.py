@@ -54,7 +54,7 @@ def generate_content(vocab, length):
     while len(new_content) < length:
         third = find_trigram(vocab, pair)
         trigram = (pair + " " + third).split()
-        new_content.extend(*[trigram])
+        new_content.extend(*[trigram])  # unpack trigrams and add to content
         next_one = find_trigram(vocab, trigram[1] + " " + trigram[2])
         if len(next_one.split()) > 1:
             pair = next_one
